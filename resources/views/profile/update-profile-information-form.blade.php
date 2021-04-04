@@ -8,11 +8,6 @@
     </x-slot>
 
     <x-slot name="form">
-
-        <x-jet-action-message on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
-
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div class="form-group" x-data="{photoName: null, photoPreview: null}">
@@ -44,7 +39,7 @@
                 <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
 				</x-jet-secondary-button>
-				
+
 				@if ($this->user->profile_photo_path)
                     <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}

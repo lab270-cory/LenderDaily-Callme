@@ -15,7 +15,9 @@
 
         @livewireStyles
 
-        <!-- Scripts -->
+        @include('utils.theme-style')
+
+    <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased bg-light">
@@ -40,4 +42,5 @@
 
         @stack('scripts')
     </body>
+    @include('utils.theme-scripts')
 </html>

@@ -25,5 +25,8 @@
         "sass": "^1.32.8",
         "sass-loader": "^10.1.1",
         "tailwindcss": "^2.0.1"
+    },
+    "dependencies": {
+        "toastr": "^2.1.4"
     }
 }
