@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <livewire:users.create-form/>
+
     <table class="table bg-white">
         <tr>
             <th>Profile Pic</th>
