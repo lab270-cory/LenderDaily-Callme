@@ -6,30 +6,27 @@
     </x-slot>
 
     <div>
-        @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+        @if (Auth::user()->id != $user->id)
+            @livewire('users.update-profile-information-form', ['user'=>$user])
+            <x-jet-section-border />
+
+            @livewire('users.reset-password-form', ['user'=>$user])
+            <x-jet-section-border />
+
+        @else
+
             @livewire('profile.update-profile-information-form')
-
             <x-jet-section-border />
-        @endif
 
-        @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
             @livewire('profile.update-password-form')
-
             <x-jet-section-border />
-        @endif
 
-        @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
             @livewire('profile.two-factor-authentication-form')
-
-            <x-jet-section-border />
-        @endif
-
-        @livewire('profile.logout-other-browser-sessions-form')
-
-        @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
             <x-jet-section-border />
 
-            @livewire('profile.delete-user-form')
+            @livewire('profile.logout-other-browser-sessions-form')
+
+            <x-jet-section-border />
         @endif
     </div>
 </x-app-layout>
