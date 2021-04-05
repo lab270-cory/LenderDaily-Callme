@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerBladeComponents();
+    }
+
+    /**
+     * registers blade components in custom location
+     */
+    public function registerBladeComponents()
+    {
+        Blade::component('utils.content-with-loader', 'content-with-loader');
     }
 }
