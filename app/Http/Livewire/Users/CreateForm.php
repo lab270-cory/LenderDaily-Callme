@@ -39,7 +39,7 @@ class CreateForm extends Component
 
         $this->showForm = false;
 
-        \Session::put('success', 'User created successfully');
+        \Session::flash('success', 'User created successfully');
 
         redirect()->to(route('users.index'));
     }
