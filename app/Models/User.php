@@ -51,6 +51,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $next_billing_date
  * @method static \Illuminate\Database\Eloquent\Builder|User whereNextBillingDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProductId($value)
+ * @property int|null $timezone_id
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTimezoneId($value)
+ * @property-read \App\Models\Timezone|null $timezone
  */
 class User extends Authenticatable
 {
@@ -100,4 +103,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    /**
+     * Gives timezone of the availability
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function timezone()
+    {
+        return $this->belongsTo(Timezone::class);
+    }
 }
