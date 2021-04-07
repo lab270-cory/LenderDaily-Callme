@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Notifications\EmailUpdated;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -53,6 +54,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();
+
+        $user->notify(new EmailUpdated());
 
         $user->sendEmailVerificationNotification();
     }

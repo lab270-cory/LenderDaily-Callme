@@ -47,6 +47,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int|null $product_id
+ * @property string|null $next_billing_date
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereNextBillingDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProductId($value)
  */
 class User extends Authenticatable
 {
