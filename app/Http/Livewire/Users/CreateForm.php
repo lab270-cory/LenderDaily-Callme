@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Users;
 
 
 use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -20,7 +21,8 @@ class CreateForm extends Component
             'name'=>'',
             'email'=>'',
             'password'=>'',
-            'password_confirmation'=>''
+            'password_confirmation'=>'',
+            'timezone'=>'',
         ];
     }
 
@@ -34,6 +36,8 @@ class CreateForm extends Component
         $this->resetErrorBag();
 
         $newUser->create(array_merge($this->state, ['terms'=> true]));
+
+        event(new Registered($newUser));
 
         $this->emit('saved');
 

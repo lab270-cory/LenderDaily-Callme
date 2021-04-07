@@ -19,4 +19,5 @@
     <body class="bg-light font-sans antialiased">
         {{ $slot }}
     </body>
+    @stack('scripts')
 </html>

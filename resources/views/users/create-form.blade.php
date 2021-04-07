@@ -55,3 +55,12 @@
         </x-slot>
     </x-jet-dialog-modal>
 </div>
+
+@push('scripts')
+    @include('utils.moment-scripts')
+    <script>
+        document.addEventListener('livewire:load', function() {
+            @this.set('state.timezone', moment.tz.guess());
+        });
+    </script>
+@endpush

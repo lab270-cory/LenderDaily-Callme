@@ -15,7 +15,7 @@ class Notifications extends Component
      *
      * @var array
      */
-    public $notifications;
+    public $notifications = [];
 
     /**
      * Count of new notifications
@@ -33,10 +33,12 @@ class Notifications extends Component
 
     public function render()
     {
+        $this->populate();
+
         return view('navigation.notifications');
     }
 
-    public function hydrate()
+    public function populate()
     {
         $this->notifications = [];
         $this->newNotificationCount = 0;

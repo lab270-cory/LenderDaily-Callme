@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Timezone;
 use App\Models\User;
 use App\Notifications\MyAccountRegistration;
 use App\Notifications\NewUserRegistration;
@@ -33,6 +34,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'timezone_id'=> Timezone::getTimezoneId($input['timezone'] ?? null)
         ]);
 
         $user->notify(new MyAccountRegistration);

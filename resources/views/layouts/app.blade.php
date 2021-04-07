@@ -40,7 +40,9 @@
 
         @livewireScripts
 
+        @include('utils.theme-scripts')
+
         @stack('scripts')
     </body>
-    @include('utils.theme-scripts')
+
 </html>

@@ -40,6 +40,8 @@
                     <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
 
+                <input type="hidden" name="timezone" id="timezone">
+
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
@@ -68,4 +70,14 @@
             </form>
         </div>
     </x-jet-authentication-card>
+
+    @push('scripts')
+        @include('utils.moment-scripts')
+        <script>
+            setTimeout(()=>{
+                $('#timezone').val(moment.tz.guess())
+            }, 2000)
+        </script>
+    @endpush
+
 </x-guest-layout>
