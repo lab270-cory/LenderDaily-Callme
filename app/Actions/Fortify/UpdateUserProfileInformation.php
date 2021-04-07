@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Timezone;
 use App\Notifications\EmailUpdated;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'timezone_id' => $input['timezone_id'] ?? $user->timezone_id,
             ])->save();
         }
     }
@@ -53,6 +55,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => $input['name'],
             'email' => $input['email'],
             'email_verified_at' => null,
+            'timezone_id' => $input['timezone_id'] ?? $user->timezone_id,
         ])->save();
 
         $user->notify(new EmailUpdated());

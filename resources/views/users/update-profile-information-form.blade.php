@@ -61,8 +61,14 @@
             <!-- Email -->
             <div class="form-group">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
+                <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" data-lpignore="true"/>
                 <x-jet-input-error for="email" />
+            </div>
+
+            <!-- Timezone -->
+            <div class="form-group mt-2">
+                <x-jet-label for="timezone" value="{{ __('Timezone') }}" />
+                <x-timezone-select model="state.timezone_id" :initialValue="$state['timezone_id']"/>
             </div>
         </div>
     </x-slot>

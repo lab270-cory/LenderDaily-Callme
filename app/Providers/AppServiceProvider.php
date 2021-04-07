@@ -35,5 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function registerBladeComponents()
     {
         Blade::component('utils.content-with-loader', 'content-with-loader');
+        Blade::component('utils.select2', 'select2');
+        Blade::component('utils.timezone-select', 'timezone-select');
     }
 }
