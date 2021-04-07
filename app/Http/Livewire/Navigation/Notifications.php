@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Auth;
 
-class Topbar extends Component
+class Notifications extends Component
 {
     /**
      * Array of notifications
@@ -33,6 +33,11 @@ class Topbar extends Component
 
     public function render()
     {
+        return view('navigation.notifications');
+    }
+
+    public function hydrate()
+    {
         $this->notifications = [];
         $this->newNotificationCount = 0;
 
@@ -53,10 +58,7 @@ class Topbar extends Component
                 $notification->popped_up = true;
                 $notification->save();
             });
-
-        return view('navigation.topbar');
     }
-
 
     /**
      * Formats notification in a format required by frontend

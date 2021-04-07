@@ -22,7 +22,7 @@
     </head>
     <body class="font-sans antialiased bg-light">
         <x-jet-banner />
-        @livewire('navigation.topbar')
+        @include('navigation.topbar')
 
         <!-- Page Heading -->
         <header class="d-flex py-3 bg-white shadow-sm border-bottom">
