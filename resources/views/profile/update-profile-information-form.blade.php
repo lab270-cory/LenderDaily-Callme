@@ -64,6 +64,12 @@
                 <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
                 <x-jet-input-error for="email" />
             </div>
+
+            <!-- Timezone -->
+            <div class="form-group mt-2">
+                <x-jet-label for="timezone" value="{{ __('Timezone') }}" />
+                <x-timezone-select model="state.timezone_id" :initialValue="$state['timezone_id']"/>
+            </div>
         </div>
     </x-slot>
 

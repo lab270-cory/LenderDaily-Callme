@@ -23,6 +23,7 @@
     <body class="font-sans antialiased bg-light">
         <x-jet-banner />
         @include('navigation.topbar')
+        <livewire:navigation.timezone-alert/>
 
         <!-- Page Heading -->
         <header class="d-flex py-3 bg-white shadow-sm border-bottom">
