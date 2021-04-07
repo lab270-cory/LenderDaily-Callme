@@ -65,17 +65,20 @@
 
                 <!-- Settings Dropdown -->
                 @auth
-                <x-jet-dropdown id="notifications">
+                <div wire:poll.8000ms wire:ignore.self>
+                    <x-jet-dropdown id="notifications">
                     <x-slot name="trigger">
-                        <i class="fas fa-bell pr-2" style="font-size: large"></i>
-                        @if($newNotificationCount)
-                            <span class="badge badge-danger rounded-circle noti-icon-badge">{{$newNotificationCount}}</span>
-                        @endif
+                        <div class="pr-2">
+                            <i class="fas fa-bell" style="font-size: large"></i>
+                            @if($newNotificationCount)
+                                <span class="badge badge-danger rounded-circle noti-icon-badge">{{$newNotificationCount}}</span>
+                            @endif
+                        </div>
                     </x-slot>
 
                     <x-slot name="content">
 
-                        <h5 class="m-0 px-2">
+                        <h5 class="m-0 px-3 pb-2 dropdown-header small text-muted">
                             <span class="float-right">
                                 <a href="#" class="text-dark" wire:click="markAllAsRead">
                                     <small>Mark all as read</small>
@@ -83,28 +86,30 @@
                             </span>Notifications
                         </h5>
 
-                        <div class="slimscroll noti-scroll shadow" style="max-height: 400px; overflow: auto;">
+                        <div class="slimscroll noti-scroll shadow pt-2">
 
                             @foreach($notifications as $notification)
 
-                                <a href="{{$notification['href'] ?? 'javascript:void(0);'}}" wire:click="markAsRead('{{$notification['id']}}')" class="dropdown-item notify-item active {{$notification['unread'] ? 'bg-white':''}}">
-                                    <div class="notify-icon bg-primary">
-                                        @if(isset($notification['icon']))
-                                            <span class="{{$notification['icon']}}"></span>
-                                        @elseif(isset($notification['picture']))
-                                            <img src="{{$notification['picture']}}" class="img-fluid rounded-circle" alt=""/>
-                                        @endif
+                                <x-jet-dropdown-link class="px-2" href="{{$notification['href'] ?? 'javascript:void(0);'}}" wire:click="markAsRead('{{$notification['id']}}')" class="{{$notification['unread'] ? 'bg-white':''}}">
+
+                                    <div class="d-flex">
+                                        <div class="w-10" style="width: 30px; height: 30px;">
+                                            @if(isset($notification['icon']))
+                                                <span class="{{$notification['icon']}} bg-primary p-2 rounded-circle" style="color: white; font-size: x-large"></span>
+                                            @elseif(isset($notification['picture']))
+                                                <img src="{{$notification['picture']}}" class="img-fluid rounded-circle" alt=""/>
+                                            @endif
+                                        </div>
+
+                                        <p class="notify-details user-msg mb-0 pl-3" style="width: 320px; white-space: pre-wrap">{!! $notification['message'] !!}</p>
                                     </div>
-
-                                    <p class="notify-details user-msg">{!! $notification['message'] !!}</p>
-
-                                    <p class="text-muted mb-0 user-msg">
-                                        <small class="text-muted">{{$notification['time']}}</small>
+                                    <p class="text-muted mb-0 user-msg" style="margin-left: 30px">
+                                        <small class="text-muted pl-3">{{$notification['time']}}</small>
                                         @if($notification['new'])
-                                            <i class="float-right fas fa-circle" style="color: var(--primary)"></i>
+                                            <i class="float-right fas fa-circle mt-1" style="color: var(--primary)"></i>
                                         @endif
                                     </p>
-                                </a>
+                                </x-jet-dropdown-link>
                             @endforeach
                         </div>
 
@@ -115,6 +120,7 @@
 
                     </x-slot>
                 </x-jet-dropdown>
+                </div>
 
                 <x-jet-dropdown id="settingsDropdown">
                     <x-slot name="trigger">
