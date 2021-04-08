@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(TimezoneSeeder::class);
-        $this->createUsers();
+        $this->call(TimezoneSeeder::class);
         $this->seedRoles();
+        $this->createUsers();
     }
 
 
