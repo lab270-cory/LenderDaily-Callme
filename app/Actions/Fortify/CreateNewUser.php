@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Role;
 use App\Models\Timezone;
 use App\Models\User;
 use App\Notifications\MyAccountRegistration;
@@ -34,7 +35,8 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'timezone_id'=> Timezone::getTimezoneId($input['timezone'] ?? null)
+            'timezone_id'=> Timezone::getTimezoneId($input['timezone'] ?? null),
+            'role_id'=> $input['role_id'] ?? Role::getDefaultRoleId()
         ]);
 
         $user->notify(new MyAccountRegistration);

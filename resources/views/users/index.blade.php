@@ -12,6 +12,7 @@
             <th>Profile Pic</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
         @foreach($users as $user)
@@ -19,6 +20,7 @@
                 <td><img src="{{$user->profile_photo_url}}" class="rounded-circle" alt="{{$user->name}}" width="35"></td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                <td>{{$user->role->display_name}}</td>
                 <td>
                     <x-jet-button onclick="window.location.href = '{{route('users.edit', $user->id)}}'">
                         <i class="fas fa-pencil-alt"></i>

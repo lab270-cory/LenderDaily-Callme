@@ -27,6 +27,22 @@
                     <x-jet-input-error for="email"></x-jet-input-error>
                 </div>
 
+                <!-- Role -->
+                <div class="form-group">
+                    @php($roles = \App\Models\Role::get()->toArray())
+                    <x-jet-label for="timezone" value="{{ __('Role') }}" />
+                    <x-select2
+                        :options="$roles"
+                        displayKey="display_name"
+                        model="state.role_id"
+                        identifier="role"
+                        :initialValue="$state['role_id']"
+                        :searchable="false"
+                    />
+
+                    <x-jet-input-error for="role_id"></x-jet-input-error>
+                </div>
+
                 <div class="form-group">
                     <x-jet-label value="{{ __('Password') }}" />
 

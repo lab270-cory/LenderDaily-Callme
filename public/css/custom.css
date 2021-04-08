@@ -62,4 +62,7 @@
 .select2-container--default .select2-selection--single .select2-selection__clear {
     margin-right: 10px;
 }
+.select2-container--default {
+    display: block !important;
+}
 /* select 2  end*/

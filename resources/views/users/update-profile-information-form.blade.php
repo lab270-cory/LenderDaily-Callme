@@ -70,6 +70,20 @@
                 <x-jet-label for="timezone" value="{{ __('Timezone') }}" />
                 <x-timezone-select model="state.timezone_id" :initialValue="$state['timezone_id']"/>
             </div>
+
+            <!-- Timezone -->
+            <div class="form-group mt-2">
+                @php($roles = \App\Models\Role::get()->toArray())
+                <x-jet-label for="timezone" value="{{ __('Role') }}" />
+                <x-select2
+                    :options="$roles"
+                    displayKey="display_name"
+                    model="state.role_id"
+                    identifier="role"
+                    initialValue="{{$user->role_id}}"
+                    :searchable="false"
+                />
+            </div>
         </div>
     </x-slot>
 

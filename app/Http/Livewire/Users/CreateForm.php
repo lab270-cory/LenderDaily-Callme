@@ -23,6 +23,7 @@ class CreateForm extends Component
             'password'=>'',
             'password_confirmation'=>'',
             'timezone'=>'',
+            'role_id'=> null
         ];
     }
 

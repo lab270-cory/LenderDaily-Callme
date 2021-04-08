@@ -72,7 +72,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'timezone_id'
+        'timezone_id',
+        'role_id'
     ];
 
     /**
@@ -114,5 +115,15 @@ class User extends Authenticatable
     public function timezone()
     {
         return $this->belongsTo(Timezone::class);
+    }
+    
+    /**
+     * Role of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }
