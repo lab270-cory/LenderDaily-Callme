@@ -116,7 +116,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Timezone::class);
     }
-    
+
     /**
      * Role of the user
      *
@@ -125,5 +125,15 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords(strtolower($value));
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
     }
 }
