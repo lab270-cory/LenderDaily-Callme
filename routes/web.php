@@ -23,10 +23,10 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 });
 
 
-Route::post('/call', function (\Illuminate\Http\Request $request) {
+Route::get('/call', function (\Illuminate\Http\Request $request) {
     // Get form input
-    $userPhone = $request->input('userPhone');
-    $encodedSalesPhone = urlencode(str_replace(' ','',$request->input('salesPhone')));
+    $userPhone = getenv('4013167551');
+    $encodedSalesPhone = urlencode(str_replace(' ','', getenv('+17047565755')));
     // Set URL for outbound call - this should be your public server URL
     $host = parse_url(Request::url(), PHP_URL_HOST);
 
@@ -34,7 +34,7 @@ Route::post('/call', function (\Illuminate\Http\Request $request) {
     // <project root dir>/.env.php
     $client = new Twilio\Rest\Client(
         getenv('TWILIO_ACCOUNT_SID'),
-        getenv('TWILIO_AUTH_TOKEN')
+        getenv('TWILIO_AUTH_TOKEN'),
     );
 
     try {
@@ -42,7 +42,7 @@ Route::post('/call', function (\Illuminate\Http\Request $request) {
             $userPhone, // The visitor's phone number
             getenv('TWILIO_NUMBER'), // A Twilio number in your account
             array(
-                "url" => "http://$host/outbound/$encodedSalesPhone"
+                "url" => "https://9734-212-102-33-137.ngrok.io/outbound/$encodedSalesPhone"
             )
         );
     } catch (Exception $e) {
@@ -66,5 +66,6 @@ Route::post('/outbound/{salesPhone}', function ($salesPhone) {
 
     $response = Response::make($twiml, 200);
     $response->header('Content-Type', 'text/xml');
+
     return $response;
 });
