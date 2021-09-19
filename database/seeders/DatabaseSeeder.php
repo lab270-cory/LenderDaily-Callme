@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
     private function createUsers()
     {
-        User::create(['name'=>'Owner', 'email'=>'owner@owner.com',
+        User::create(['name'=>'Admin', 'email'=>'admin@admin.com',
             'password'=> Hash::make('password'), 'role_id'=>1,
             'timezone_id' => Timezone::getTimezoneId('UTC')
         ]);

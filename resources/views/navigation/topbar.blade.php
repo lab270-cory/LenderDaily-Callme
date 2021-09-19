@@ -63,7 +63,7 @@
                     </x-jet-dropdown>
                 @endif
 
-                <livewire:navigation.notifications/>
+{{--                <livewire:navigation.notifications/>--}}
 
                 <!-- Settings Dropdown -->
                 @auth

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('login'));
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function (){
@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
    Route::resource('users', \App\Http\Controllers\UserController::class);
 });
 
-Route::get('/call', [\App\Http\Controllers\TwilioController::class, 'initiateCall'])->name('twilio.initiate-call');
+Route::post('/initiate-call', [\App\Http\Controllers\TwilioController::class, 'initiateCall'])->name('twilio.initiate-call');
 
 Route::post('/outbound/{salesPhone}', [\App\Http\Controllers\TwilioController::class, 'connectCall'])->name('twilio.outbound-call');
+
+Route::get('click-to-call', [\App\Http\Controllers\UserController::class, 'clickToCall'])->name('click-to-call');

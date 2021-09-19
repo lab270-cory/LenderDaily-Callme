@@ -10,10 +10,9 @@ class TwilioConnector
      * @return \Exception|string[]
      * @throws \Twilio\Exceptions\ConfigurationException
      */
-    public function initiateCall()
+    public function initiateCall($userPhone)
     {
-        // Get form input
-        $userPhone = getenv('TWILIO_USER_PHONE');
+        dd($userPhone);
         $encodedSalesPhone = urlencode(str_replace(' ','', getenv('TWILIO_SALES_PHONE')));
 
         // Create authenticated REST client using account credentials in

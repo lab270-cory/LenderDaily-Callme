@@ -96,4 +96,12 @@ class UserController extends Controller
 
         return redirect()->back()->with('error', 'User not found');
     }
+
+    /**
+     * Click to call widget
+     */
+    public function clickToCall(Request $request)
+    {
+        return view('common.click-to-call');
+    }
 }
