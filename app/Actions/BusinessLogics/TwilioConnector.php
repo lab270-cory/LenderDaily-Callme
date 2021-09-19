@@ -12,7 +12,9 @@ class TwilioConnector
      */
     public function initiateCall($userPhone)
     {
+        sleep(3);
         dd($userPhone);
+
         $encodedSalesPhone = urlencode(str_replace(' ','', getenv('TWILIO_SALES_PHONE')));
 
         // Create authenticated REST client using account credentials in

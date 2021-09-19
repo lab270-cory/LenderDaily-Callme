@@ -1,16 +1,32 @@
 <div>
-    <a onclick="initiateCall()" class="btn waves-effect waves-light">Request a phone call</a>
+    <a id="request-phone-call" onclick="initiateCall()" class="btn waves-effect waves-light">Request a phone call</a>
 </div>
 
 <script>
+
     function initiateCall() {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open("POST", '{{route('twilio.initiate-call')}}', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
+
         const urlParams = new URLSearchParams(window.location.search);
+
+        document.getElementById('request-phone-call').innerText = 'Loading...';
+        document.getElementById('request-phone-call').setAttribute('disabled', '1');
+
+        console.log('test one');
+
         xhr.send(JSON.stringify({
             phone_number: urlParams.get('phone_number')
         }));
+
+        xhr.onload = () => {
+            document.getElementById('request-phone-call').innerText = 'Call Requested';
+        };
+
+        xhr.onerror = (err) => {
+            console.log(err);
+        };
     }
 
 </script>
