@@ -22,50 +22,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
    Route::resource('users', \App\Http\Controllers\UserController::class);
 });
 
+Route::get('/call', [\App\Http\Controllers\TwilioController::class, 'initiateCall'])->name('twilio.initiate-call');
 
-Route::get('/call', function (\Illuminate\Http\Request $request) {
-    // Get form input
-    $userPhone = getenv('4013167551');
-    $encodedSalesPhone = urlencode(str_replace(' ','', getenv('+17047565755')));
-    // Set URL for outbound call - this should be your public server URL
-    $host = parse_url(Request::url(), PHP_URL_HOST);
-
-    // Create authenticated REST client using account credentials in
-    // <project root dir>/.env.php
-    $client = new Twilio\Rest\Client(
-        getenv('TWILIO_ACCOUNT_SID'),
-        getenv('TWILIO_AUTH_TOKEN'),
-    );
-
-    try {
-        $client->calls->create(
-            $userPhone, // The visitor's phone number
-            getenv('TWILIO_NUMBER'), // A Twilio number in your account
-            array(
-                "url" => "https://9734-212-102-33-137.ngrok.io/outbound/$encodedSalesPhone"
-            )
-        );
-    } catch (Exception $e) {
-        // Failed calls will throw
-        return $e;
-    }
-
-    // return a JSON response
-    return array('message' => 'Call incoming!');
-});
-
-// POST URL to handle form submission and make outbound call
-Route::post('/outbound/{salesPhone}', function ($salesPhone) {
-    // A message for Twilio's TTS engine to repeat
-    $sayMessage = 'Thanks for contacting our sales department. Our
-        next available representative will take your call.';
-
-    $twiml = new \Twilio\TwiML\VoiceResponse();
-    $twiml->say($sayMessage, array('voice' => 'alice'));
-    $twiml->dial($salesPhone);
-
-    $response = Response::make($twiml, 200);
-    $response->header('Content-Type', 'text/xml');
-
-    return $response;
-});
+Route::post('/outbound/{salesPhone}', [\App\Http\Controllers\TwilioController::class, 'connectCall'])->name('twilio.outbound-call');
