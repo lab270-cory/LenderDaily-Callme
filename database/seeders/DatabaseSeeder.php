@@ -26,15 +26,15 @@ class DatabaseSeeder extends Seeder
     private function createUsers()
     {
         User::create(['name'=>'Admin', 'email'=>'admin@admin.com',
-            'password'=> Hash::make('password'), 'role_id'=>1,
+            'password'=> Hash::make('password'), 'role_id'=> Role::getRoleId('admin'),
             'timezone_id' => Timezone::getTimezoneId('UTC')
         ]);
     }
 
     private function seedRoles()
     {
-        Role::updateOrCreate(['name'=> 'owner', 'display_name'=>'Owner']);
+//        Role::updateOrCreate(['name'=> 'owner', 'display_name'=>'Owner']);
         Role::updateOrCreate(['name'=> 'admin', 'display_name'=>'Administrator']);
-        Role::updateOrCreate(['name'=> 'collaborator', 'display_name'=>'Collaborator']);
+//        Role::updateOrCreate(['name'=> 'collaborator', 'display_name'=>'Collaborator']);
     }
 }

@@ -56,7 +56,7 @@
             </x-slot>
 
             <x-slot name="description">
-                {{ __('Follow the instruction to start using widget') }}
+                {{ __('Follow the instruction to start using the widget') }}
             </x-slot>
 
             <x-slot name="form">

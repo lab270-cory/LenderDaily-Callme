@@ -21,6 +21,8 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
    Route::resource('users', \App\Http\Controllers\UserController::class);
    Route::get('widgets/create', [\App\Http\Controllers\WidgetController::class, 'create'])->name('widgets.create');
+   Route::get('widgets/{callWidget}/edit', [\App\Http\Controllers\WidgetController::class, 'edit'])->name('widgets.edit');
+   Route::delete('widgets/{callWidget}', [\App\Http\Controllers\WidgetController::class, 'destroy'])->name('widgets.destroy');
 });
 
 Route::post('/initiate-call', [\App\Http\Controllers\TwilioController::class, 'initiateCall'])->name('twilio.initiate-call');

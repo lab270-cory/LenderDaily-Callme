@@ -21,8 +21,6 @@ class UpdateOrCreate extends Component
 
     public function mount()
     {
-        $this->buttonScript = $this->minimizeJavascript($this->buttonScript);
-
         if(!$this->model){
             $this->state = [
                 'id'=> null,
@@ -57,6 +55,7 @@ class UpdateOrCreate extends Component
             }())
         </script>
         ";
+        $this->buttonScript = $this->minimizeJavascript($this->buttonScript);
     }
 
     public function render()
