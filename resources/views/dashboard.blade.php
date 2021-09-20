@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-    <x-jet-button class="float-right mb-4" href="{{route('widgets.create')}}">
+    <a href="{{route('widgets.create')}}" class="btn btn-dark text-uppercase float-right mb-4">
         <i class="fas fa-plus"></i>
         Add New
-    </x-jet-button>
+    </a>
 
     <table class="table bg-white">
         <tr>
