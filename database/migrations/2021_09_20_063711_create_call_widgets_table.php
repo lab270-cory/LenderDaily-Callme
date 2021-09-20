@@ -17,6 +17,7 @@ class CreateCallWidgetsTable extends Migration
             $table->id();
             $table->string('domains', 1000);
             $table->string('call_center_number');
+            $table->string('identifier')->unique();
             $table->timestamps();
         });
     }
