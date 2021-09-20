@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
-            {{ __('Dashboard') }}
+            {{ __('Widget') }}
         </h2>
     </x-slot>
 
-    Work in progress!
-
+    <livewire:widgets.update-or-create/>
 </x-app-layout>

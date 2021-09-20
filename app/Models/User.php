@@ -54,6 +54,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @property int|null $timezone_id
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTimezoneId($value)
  * @property-read \App\Models\Timezone|null $timezone
+ * @property int $role_id
+ * @property-read \App\Models\Role $role
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRoleId($value)
  */
 class User extends Authenticatable
 {
