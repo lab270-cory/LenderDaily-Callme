@@ -14,6 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        \URL::forceRootUrl(config('app.url'));
+        \URL::forceScheme('https');
         if ($this->app->isLocal()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }

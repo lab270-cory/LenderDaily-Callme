@@ -12,11 +12,11 @@ class TwilioConnector
      */
     public function initiateCall($userPhone)
     {
-        sleep(3);
-        dd($userPhone);
+        \Log::info($userPhone);
 
         $encodedSalesPhone = urlencode(str_replace(' ','', getenv('TWILIO_SALES_PHONE')));
 
+        \Log::info($encodedSalesPhone);
         // Create authenticated REST client using account credentials in
         // <project root dir>/.env.php
         $client = new \Twilio\Rest\Client(
@@ -36,6 +36,8 @@ class TwilioConnector
             return $e;
         }
 
+        \Log::info('cALL succeed');
+
         // return a JSON response
         return array('message' => 'Call incoming!');
     }
@@ -48,6 +50,8 @@ class TwilioConnector
      */
     public function connectCall($salesPhone)
     {
+
+        \Log::info('connecting call');
         // A message for Twilio's TTS engine to repeat
         $sayMessage = 'Thanks for contacting our sales department. Our
         next available representative will take your call.';
