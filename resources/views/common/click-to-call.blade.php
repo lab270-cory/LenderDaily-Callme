@@ -17,7 +17,8 @@
         console.log('test one');
 
         xhr.send(JSON.stringify({
-            phone_number: urlParams.get('phone_number')
+            phone_number: urlParams.get('phone_number'),
+            identifier: '{{Request::input('identifier')}}'
         }));
 
         xhr.onload = () => {

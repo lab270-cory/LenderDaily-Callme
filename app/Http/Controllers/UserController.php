@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CallWidget;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -100,7 +101,7 @@ class UserController extends Controller
     /**
      * Click to call widget
      */
-    public function clickToCall(Request $request)
+    public function clickToCall()
     {
         return view('common.click-to-call');
     }

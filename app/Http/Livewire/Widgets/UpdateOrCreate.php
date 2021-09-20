@@ -46,8 +46,9 @@ class UpdateOrCreate extends Component
             (function (){
                 let iframe = document.createElement('iframe');
                 const urlParams = new URLSearchParams(window.location.search);
-                let phoneNumber = urlParams.get('phone_number')
-                iframe.src = '$clickToCallUrl?phone_number=' + phoneNumber + '&identifier=$identifier';
+                let phoneNumber = urlParams.get('phone_number');
+                let domain = window.location.hostname;
+                iframe.src = '$clickToCallUrl?phone_number=' + phoneNumber + '&identifier=$identifier' + '&domain='+domain;
                 iframe.setAttribute('frameborder', '0');
                 iframe.height = '70';
                 iframe.width = '250';
