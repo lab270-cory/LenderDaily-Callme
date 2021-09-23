@@ -25,6 +25,10 @@ class DomainCheckMiddleware
             $domain = $request->input('domain');
             $allowedDomains = CallWidget::whereIdentifier($request->input('identifier'))->value('domains');
 
+            if(!$allowedDomains) {
+                return redirect(404);
+            }
+
             if(in_array($domain, $allowedDomains)){
                 header("X-Frame-Options: ALLOW-FROM $domain");
                 header("Content-Security-Policy: frame-ancestors $domain");
