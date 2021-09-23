@@ -20,8 +20,8 @@ class TwilioController extends Controller
         return (new TwilioConnector())->initiateCall($request->input('phone_number'), $callCenterPhone);
     }
 
-    public function connectCall($callCenterNumber)
+    public function connectCall($callCenterNumber, $callerId)
     {
-        return (new TwilioConnector())->connectCall($callCenterNumber);
+        return (new TwilioConnector())->connectCall($callCenterNumber, $callerId);
     }
 }

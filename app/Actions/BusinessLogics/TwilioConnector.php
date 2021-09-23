@@ -15,6 +15,7 @@ class TwilioConnector
         \Log::info($userPhone);
 
         $encodedSalesPhone = urlencode(str_replace(' ','', $salesPhone));
+        $encodedUserPhone = urlencode(str_replace(' ','', $userPhone));
 
         \Log::info($encodedSalesPhone);
         // Create authenticated REST client using account credentials in
@@ -28,7 +29,7 @@ class TwilioConnector
             $client->calls->create(
                 $userPhone,
                 config('services.twilio.number'),
-                ["url"=> route('twilio.outbound-call', $encodedSalesPhone)]
+                ["url"=> route('twilio.outbound-call', ['salesPhone'=> $encodedSalesPhone, 'callerId'=> $encodedUserPhone])]
             );
 
         } catch (\Exception $e) {
@@ -48,9 +49,8 @@ class TwilioConnector
      * @param $salesPhone
      * @return \Illuminate\Http\Response
      */
-    public function connectCall($salesPhone)
+    public function connectCall($salesPhone, $callerId)
     {
-
         \Log::info('connecting call');
         // A message for Twilio's TTS engine to repeat
         $sayMessage = 'Thanks for contacting our sales department. Our
@@ -58,7 +58,7 @@ class TwilioConnector
 
         $twiml = new \Twilio\TwiML\VoiceResponse();
         $twiml->say($sayMessage, array('voice' => 'alice'));
-        $twiml->dial($salesPhone);
+        $twiml->dial($salesPhone, ['callerId'=> $callerId]);
 
         $response = \Response::make($twiml, 200);
         $response->header('Content-Type', 'text/xml');

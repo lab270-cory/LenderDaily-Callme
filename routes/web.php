@@ -27,6 +27,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
 
 Route::post('/initiate-call', [\App\Http\Controllers\TwilioController::class, 'initiateCall'])->name('twilio.initiate-call');
 
-Route::post('/outbound/{salesPhone}', [\App\Http\Controllers\TwilioController::class, 'connectCall'])->name('twilio.outbound-call');
+Route::post('/outbound/{salesPhone}/{callerId}', [\App\Http\Controllers\TwilioController::class, 'connectCall'])->name('twilio.outbound-call');
 
 Route::get('click-to-call', [\App\Http\Controllers\UserController::class, 'clickToCall'])->name('click-to-call')->middleware('domain.allowed');
