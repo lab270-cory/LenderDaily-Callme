@@ -50,8 +50,8 @@ class UpdateOrCreate extends Component
                 let domain = window.location.hostname;
                 iframe.src = '$clickToCallUrl?phone_number=' + phoneNumber + '&identifier=$identifier' + '&domain='+domain;
                 iframe.setAttribute('frameborder', '0');
-                iframe.height = '70';
-                iframe.width = '250';
+                iframe.height = '90';
+                iframe.width = '410';
                 document.getElementById('click-to-call-frame').appendChild(iframe);
             }())
         </script>

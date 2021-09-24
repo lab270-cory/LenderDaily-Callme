@@ -1,5 +1,5 @@
 <div>
-    <a id="request-phone-call" onclick="initiateCall()" class="btn waves-effect waves-light">Request a phone call</a>
+    <button id="request-phone-call" onclick="initiateCall()" class="btn waves-effect waves-light">Request a Phone Call</button>
 </div>
 
 <script>
@@ -13,8 +13,7 @@
 
         document.getElementById('request-phone-call').innerText = 'Loading...';
         document.getElementById('request-phone-call').setAttribute('disabled', '1');
-
-        console.log('test one');
+        document.getElementById('request-phone-call').style.color = 'white';
 
         xhr.send(JSON.stringify({
             phone_number: urlParams.get('phone_number'),
@@ -23,33 +22,45 @@
 
         xhr.onload = () => {
             document.getElementById('request-phone-call').innerText = 'Call Requested';
+            document.getElementById('request-phone-call').style.color = 'inherit';
         };
 
         xhr.onerror = (err) => {
-            console.log(err);
+            document.getElementById('request-phone-call').style.color = 'inherit';
         };
     }
 
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+    * {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #545454;
+        margin: 0;
+    }
+
+    .btn.active {
+        color: white;
+    }
+
     .btn {
         display: inline-block;
         font-weight: 600;
-        font-size: 12px;
         line-height: 30px;
-        color: #545454;
-        width: 120px;
-        height: 30px;
-        padding-bottom: 0!important;
         min-width: unset;
-        margin-left: 0;
+        padding: 1.5rem 3.5rem;
         border: unset;
         outline: 0;
         background: #fdb530 !important;
-        border-radius: 15px !important;
-        text-transform: capitalize;
         letter-spacing: -.4px;
+        font-size: 1.5rem;
+        border-radius: 30px !important;
+        width: 400px;
     }
 
     a.waves-effect, a.waves-light {
@@ -62,24 +73,14 @@
         transition: background-color .3s ease-in-out, color .3s ease-in-out;
         display: inline-block;
         vertical-align: top;
-        font-size: 18px;
-        line-height: 1;
-        font-weight: 700;
-        border-radius: 24px;
-        min-width: 202px;
-        text-align: center;
-        padding: 15px 20px;
         text-decoration: none;
         background-color: #feb612;
-        color: #545454;
         cursor: pointer;
-        text-transform: capitalize;
     }
 
     .btn {
-        margin: .375rem;
         color: inherit;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         word-wrap: break-word;
         white-space: normal;
         cursor: pointer;
@@ -91,8 +92,6 @@
         transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
         transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
         transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
-        padding: .84rem 2.14rem;
-        font-size: .81rem;
     }
 
     .waves-effect {
@@ -109,7 +108,6 @@
     .btn {
         display: inline-block;
         font-weight: 400;
-        color: #212529;
         text-align: center;
         vertical-align: middle;
         -webkit-user-select: none;
@@ -118,15 +116,12 @@
         user-select: none;
         background-color: transparent;
         border: 1px solid transparent;
-        padding: .375rem .75rem;
-        font-size: 1rem;
         line-height: 1.5;
         border-radius: .25rem;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
 
-    a {
-        color: #007bff;
+    button {
         text-decoration: none;
         cursor: pointer;
         -webkit-transition: all 0.2s ease-in-out;
