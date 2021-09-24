@@ -1,37 +1,3 @@
-<div>
-    <button id="request-phone-call" onclick="initiateCall()" class="btn waves-effect waves-light">Request a Phone Call</button>
-</div>
-
-<script>
-
-    function initiateCall() {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", '{{route('twilio.initiate-call')}}', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-
-        const urlParams = new URLSearchParams(window.location.search);
-
-        document.getElementById('request-phone-call').innerText = 'Loading...';
-        document.getElementById('request-phone-call').setAttribute('disabled', '1');
-        document.getElementById('request-phone-call').style.color = 'white';
-
-        xhr.send(JSON.stringify({
-            phone_number: urlParams.get('phone_number'),
-            identifier: '{{Request::input('identifier')}}'
-        }));
-
-        xhr.onload = () => {
-            document.getElementById('request-phone-call').innerText = 'Call Requested';
-            document.getElementById('request-phone-call').style.color = 'inherit';
-        };
-
-        xhr.onerror = (err) => {
-            document.getElementById('request-phone-call').style.color = 'inherit';
-        };
-    }
-
-</script>
-
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
@@ -129,3 +95,37 @@
     }
 
 </style>
+
+<div>
+    <button id="request-phone-call" onclick="initiateCall()" class="btn waves-effect waves-light">Request a Phone Call</button>
+</div>
+
+<script>
+
+    function initiateCall() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", '{{route('twilio.initiate-call')}}', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        document.getElementById('request-phone-call').innerText = 'Loading...';
+        document.getElementById('request-phone-call').setAttribute('disabled', '1');
+        document.getElementById('request-phone-call').style.color = 'white';
+
+        xhr.send(JSON.stringify({
+            phone_number: urlParams.get('phone_number'),
+            identifier: '{{Request::input('identifier')}}'
+        }));
+
+        xhr.onload = () => {
+            document.getElementById('request-phone-call').innerText = 'Call Requested';
+            document.getElementById('request-phone-call').style.color = 'inherit';
+        };
+
+        xhr.onerror = (err) => {
+            document.getElementById('request-phone-call').style.color = 'inherit';
+        };
+    }
+
+</script>
