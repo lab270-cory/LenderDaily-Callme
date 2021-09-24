@@ -120,12 +120,10 @@
 
         xhr.onload = () => {
             document.getElementById('request-phone-call').innerText = 'Call Requested';
-            document.getElementById('request-phone-call').classList.remove('active');
         };
 
         xhr.onerror = (err) => {
             document.getElementById('request-phone-call').innerText = 'Something went wrong';
-            document.getElementById('request-phone-call').classList.remove('active');
         };
     }
 
