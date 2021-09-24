@@ -11,7 +11,8 @@
     }
 
     .btn.active {
-        color: white;
+        color: white !important;
+        background-color: #dda0dd !important;
     }
 
     .btn {
@@ -46,7 +47,6 @@
 
     .btn {
         color: inherit;
-        /*text-transform: uppercase;*/
         word-wrap: break-word;
         white-space: normal;
         cursor: pointer;
@@ -73,7 +73,7 @@
 
     .btn {
         display: inline-block;
-        font-weight: 400;
+        font-weight: 500;
         text-align: center;
         vertical-align: middle;
         -webkit-user-select: none;
@@ -111,7 +111,7 @@
 
         document.getElementById('request-phone-call').innerText = 'Loading...';
         document.getElementById('request-phone-call').setAttribute('disabled', '1');
-        document.getElementById('request-phone-call').style.color = 'white';
+        document.getElementById('request-phone-call').classList.add('active');
 
         xhr.send(JSON.stringify({
             phone_number: urlParams.get('phone_number'),
@@ -120,11 +120,12 @@
 
         xhr.onload = () => {
             document.getElementById('request-phone-call').innerText = 'Call Requested';
-            document.getElementById('request-phone-call').style.color = 'inherit';
+            document.getElementById('request-phone-call').classList.remove('active');
         };
 
         xhr.onerror = (err) => {
-            document.getElementById('request-phone-call').style.color = 'inherit';
+            document.getElementById('request-phone-call').innerText = 'Something went wrong';
+            document.getElementById('request-phone-call').classList.remove('active');
         };
     }
 
