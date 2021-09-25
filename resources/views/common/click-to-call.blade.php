@@ -93,9 +93,9 @@
 
     @media (max-width: 768px) {
         .btn {
-            padding: 0.8rem !important;
-            font-size: 1rem !important;
-            width: 260px !important;
+            /*padding: 0.8rem !important;*/
+            /*font-size: 1rem !important;*/
+            /*width: 260px !important;*/
         }
     }
 
