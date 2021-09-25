@@ -17,17 +17,13 @@
 
     .btn {
         display: inline-block;
-        font-weight: 600;
         line-height: 30px;
         min-width: unset;
-        padding: 1.5rem 3.5rem;
         border: unset;
         outline: 0;
         background: #fdb530 !important;
         letter-spacing: -.4px;
-        font-size: 1.5rem;
         border-radius: 30px !important;
-        width: 400px;
     }
 
     a.waves-effect, a.waves-light {
@@ -80,8 +76,6 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        background-color: transparent;
-        border: 1px solid transparent;
         line-height: 1.5;
         border-radius: .25rem;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
@@ -92,6 +86,22 @@
         cursor: pointer;
         -webkit-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+        .btn {
+            padding: 0.8rem !important;
+            font-size: 1rem !important;
+            width: 260px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .btn {
+            padding: 1.5rem 3.5rem;
+            font-size: 1.5rem;
+            width: 400px;
+        }
     }
 
 </style>
