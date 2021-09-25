@@ -24,6 +24,9 @@
         background: #fdb530 !important;
         letter-spacing: -.4px;
         border-radius: 30px !important;
+        padding: 1.5rem 3.5rem;
+        font-size: 1.5rem;
+        width: 400px;
     }
 
     a.waves-effect, a.waves-light {
@@ -93,14 +96,6 @@
             padding: 0.8rem !important;
             font-size: 1rem !important;
             width: 260px !important;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .btn {
-            padding: 1.5rem 3.5rem;
-            font-size: 1.5rem;
-            width: 400px;
         }
     }
 
