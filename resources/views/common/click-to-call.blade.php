@@ -91,11 +91,11 @@
         transition: all 0.2s ease-in-out;
     }
 
-    @media (max-width: 768px) {
+    @media (max-device-width: 768px) {
         .btn {
-            /*padding: 0.8rem !important;*/
-            /*font-size: 1rem !important;*/
-            /*width: 260px !important;*/
+            padding: 0.8rem !important;
+            font-size: 1rem !important;
+            width: 260px !important;
         }
     }
 
